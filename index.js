@@ -12,7 +12,7 @@ client.on('message', msg => {
     const args = msg.content.split(' ').slice(1).join(' ');
     if (command === 'help') {
 		msg.author.sendMessage("_Our Bot is under Maintenance_");
-		msg.channel.send(msg.author + "please check your PM for the help list.");
+		msg.channel.send(msg.author + " please check your PM for the help list. :white_check_mark:");
 	}
     else if (command === 'invite') return msg.channel.send(process.env.INVITE);
 });
