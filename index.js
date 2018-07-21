@@ -13,8 +13,8 @@ client.on('message', msg => {
     if (command === 'help') {
 		msg.author.sendMessage("_Our Bot is under Maintenance_");
 		msg.channel.send(msg.author + " please check your PM for the help list. :white_check_mark:");
-	}
-	if( msg.content == "السلام عليكم" ) {
+	}	
+	if (msg.content.indexOf("السلام عليكم") === 0) {
 		msg.channel.send(msg.author + " و عليكم السلام ورحمة الله و بركاته ");
 	}
     else if (command === 'invite') return msg.channel.send(process.env.INVITE);
