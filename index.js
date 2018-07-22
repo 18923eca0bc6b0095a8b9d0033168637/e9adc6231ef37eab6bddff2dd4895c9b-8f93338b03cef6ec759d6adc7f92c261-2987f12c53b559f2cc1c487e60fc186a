@@ -89,17 +89,17 @@ const commands = {
 	},
 	'clear': (msg) => {
 		let limit2 = msg.content.split(' ')[1];
+		if (limit2 >= 100) {
+			var MessagesToBeCleared = 100;
+		} else {
+			var MessagesToBeCleared = limit2;
+		}
 			if(msg.channel.permissionsFor(msg.member).hasPermission("MANAGE_MESSAGES")) {
 				if (limit2 == '' || limit2 === undefined) {
 					msg.channel.sendMessage(msg.author + " | Enter the number of messages to clear. :x:");
 					return;
 				} else {
 					async function clear() {
-						if (limit2 >= 100) {
-							var MessagesToBeCleared = 100;
-						} else {
-							var MessagesToBeCleared = limit2;
-						}
 						msg.delete();
 						const fetched = await msg.channel.fetchMessages({limit: MessagesToBeCleared});
 						msg.channel.bulkDelete(fetched);
