@@ -90,8 +90,8 @@ const commands = {
 	'clear': (msg) => {
 		let limit2 = msg.content.split(' ')[1];
 			if(msg.channel.permissionsFor(msg.member).hasPermission("MANAGE_MESSAGES")) {
-				if(limit2 == "0") {
-					msg.channel.sendMessage(msg.author + " enter the number of messages to send. :x:");
+				if (limit2 == '' || limit2 === undefined) {
+					msg.channel.sendMessage(msg.author + " | Enter the number of messages to send. :x:");
 					return;
 				} else {
 					async function clear() {
