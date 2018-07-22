@@ -105,6 +105,7 @@ const commands = {
 						msg.channel.bulkDelete(fetched);
 					}
 					clear();
+					msg.channel.sendMessage(":white_check_mark: | Cleared " + MessagesToBeCleared + " messages.");
 				}
 			} else {
 				msg.channel.sendMessage(msg.author + " | No permissions! :x:");
