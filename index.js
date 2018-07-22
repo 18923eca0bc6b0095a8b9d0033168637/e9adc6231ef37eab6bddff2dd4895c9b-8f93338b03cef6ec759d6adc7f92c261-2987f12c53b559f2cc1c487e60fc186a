@@ -88,10 +88,7 @@ const commands = {
 };
 
 client.on('ready', () => {
-    client.user.setActivity("Coming Soon", {
-	  type: "STREAMING",
-	  url: "http://botato.xyz"
-	});
+    //nothing for now
 });
 
 client.on('message', msg => {
