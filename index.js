@@ -90,12 +90,6 @@ client.on('ready', () => {
 });
 
 client.on('message', msg => {
-    if (!msg.content.startsWith(process.env.PREFIX) || !msg.guild) return;
-    const command = msg.content.split(' ')[0].substr(process.env.PREFIX.length);
-    const args = msg.content.split(' ').slice(1).join(' ');
-    if (command === 'help') {
-		msg.channel.send('Coming Soon');
-	}
 	if (!msg.content.startsWith(process.env.PREFIX)) return;
 	if (commands.hasOwnProperty(msg.content.toLowerCase().slice(process.env.PREFIX.length).split(' ')[0])) commands[msg.content.toLowerCase().slice(process.env.PREFIX.length).split(' ')[0]](msg);
 });
