@@ -1,7 +1,7 @@
 // Discord.js bot
 const Discord = require('discord.js');
 const yt = require('ytdl-core');
-const tokens = require('./musictokens.json');
+const tokens = require('musictokens.json');
 const client = new Discord.Client();
 
 let queue = {};
