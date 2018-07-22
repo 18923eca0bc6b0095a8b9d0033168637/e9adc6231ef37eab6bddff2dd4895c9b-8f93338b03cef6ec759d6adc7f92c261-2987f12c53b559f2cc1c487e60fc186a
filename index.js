@@ -1,6 +1,5 @@
 const { Client } = require('discord.js');
 const yt = require('ytdl-core');
-const tokens = require('./tokens.json');
 const client = new Client();
 
 let queue = {};
@@ -21,7 +20,7 @@ const commands = {
 				msg.member.voiceChannel.leave();
 			});
 			msg.channel.sendMessage(`Playing: **${song.title}** as requested by: **${song.requester}**`);
-			dispatcher = msg.guild.voiceConnection.playStream(yt(song.url, { audioonly: true }), { passes : ${process.env.musicpasses} });
+			dispatcher = msg.guild.voiceConnection.playStream(yt(song.url, { audioonly: true }), { passes : process.env.musicpasses });
 			let collector = msg.channel.createCollector(m => m);
 			collector.on('message', m => {
 				if (m.content.startsWith(process.env.PREFIX + 'pause')) {
