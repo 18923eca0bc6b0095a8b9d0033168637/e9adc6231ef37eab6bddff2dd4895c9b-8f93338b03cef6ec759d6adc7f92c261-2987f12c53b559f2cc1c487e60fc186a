@@ -3,7 +3,7 @@ const Discord = require('discord.js');
 const client = new Discord.Client();
 
 client.on('ready', () => {
-    client.user.setActivity('Under Maintenance', {type: 'WATCHING'});
+    client.user.setActivity('Coming Soon...', {type: 'STREAMING'});
 });
 
 client.on('message', msg => {
@@ -14,8 +14,11 @@ client.on('message', msg => {
 		msg.author.sendMessage("_Our Bot is under Maintenance_");
 		msg.channel.send(msg.author + " please check your PM for the help list. :white_check_mark:");
 	}	
-	if (msg.content.indexOf("السلام عليكم") === 0) {
-		msg.channel.send(msg.author + " و عليكم السلام ورحمة الله و بركاته ");
+	if (msg.content.indexOf("Hi") === 0) {
+		msg.channel.send(msg.author + " Hi! :)");
+	}
+	if (msg.content.indexOf("Hello") === 0) {
+		msg.channel.send(msg.author + " Hi! :)");
 	}
 });
 
