@@ -88,15 +88,21 @@ const commands = {
 		if (msg.author.id == adminID) process.exit(); //Requires a node module like Forever to work.
 	},
 	'clear': (msg) => {
-		if(msg.channel.permissionsFor(msg.member).hasPermission("MANAGE_MESSAGES")) {
-			async function clear() {
-				msg.delete();
-				const fetched = await msg.channel.fetchMessages({limit: 99});
-				msg.channel.bulkDelete(fetched);
-			}
-			clear();
+		let limit = args[0];
+		if(limit == "0") {
+			msg.channel.sendMessage(msg.author + " enter the number of messages to send. :x:");
+			return;
 		} else {
-			msg.channel.sendMessage(msg.author + " no permissions! :x:");
+			if(msg.channel.permissionsFor(msg.member).hasPermission("MANAGE_MESSAGES")) {
+				async function clear() {
+					msg.delete();
+					const fetched = await msg.channel.fetchMessages({limit: limit});
+					msg.channel.bulkDelete(fetched);
+				}
+				clear();
+			} else {
+				msg.channel.sendMessage(msg.author + " no permissions! :x:");
+			}
 		}
 	}
 };
@@ -113,6 +119,7 @@ client.on('ready', () => {
 
 client.on('message', msg => {
 	if (!msg.content.startsWith(prefix)) return;
+	const args = msg.content.slice(prefix.length).trim().split(/ +/g);
 	if (commands.hasOwnProperty(msg.content.toLowerCase().slice(prefix.length).split(' ')[0])) commands[msg.content.toLowerCase().slice(prefix.length).split(' ')[0]](msg);
 });
 
