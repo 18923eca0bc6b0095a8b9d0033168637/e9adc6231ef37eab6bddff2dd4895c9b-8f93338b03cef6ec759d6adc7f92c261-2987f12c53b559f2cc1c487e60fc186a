@@ -6,7 +6,6 @@ let queue = {};
 
 var prefix = "%";
 var adminID = "301073031801995264";
-var token = "NDcwMzA4MjI4NzMyMDI2ODgw.DjXxhw.-tZPO7a5LH20s4yAUa7HejAmpxg";
 
 const commands = {
 	'play': (msg) => {
@@ -117,4 +116,4 @@ client.on('message', msg => {
 	if (commands.hasOwnProperty(msg.content.toLowerCase().slice(prefix.length).split(' ')[0])) commands[msg.content.toLowerCase().slice(prefix.length).split(' ')[0]](msg);
 });
 
-client.login(token);
+client.login(process.env.TOKEN);
