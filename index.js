@@ -88,16 +88,15 @@ const commands = {
 		if (msg.author.id == adminID) process.exit(); //Requires a node module like Forever to work.
 	},
 	'clear': (msg) => {
-		const args = msg.content.slice(prefix.length).trim().split(/ +/g);
-		let limit = args[0];
+		let limit2 = msg.content.split(' ')[1];
 			if(msg.channel.permissionsFor(msg.member).hasPermission("MANAGE_MESSAGES")) {
-				if(limit == "0") {
+				if(limit2 == "0") {
 					msg.channel.sendMessage(msg.author + " enter the number of messages to send. :x:");
 					return;
 				} else {
 					async function clear() {
 						msg.delete();
-						const fetched = await msg.channel.fetchMessages({limit: limit});
+						const fetched = await msg.channel.fetchMessages({limit: limit2});
 						msg.channel.bulkDelete(fetched);
 					}
 					clear();
