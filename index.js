@@ -80,7 +80,7 @@ const commands = {
 		msg.channel.sendMessage(`__**${msg.guild.name}'s Music Queue:**__ Currently **${tosend.length}** songs queued ${(tosend.length > 15 ? '*[Only next 15 shown]*' : '')}\n\`\`\`${tosend.slice(0,15).join('\n')}\`\`\``);
 	},
 	'help': (msg) => {
-		let tosend = ["=== MUSIC HELP ===", '```', prefix + 'join : "Join Voice channel of msg sender"',	prefix + 'add : "Add a valid youtube link to the queue"', prefix + 'queue : "Shows the current queue, up to 15 songs shown."', prefix + 'play : "Play the music queue if already joined to a voice channel"', '', 'the following commands only function while the play command is running:'.toUpperCase(), prefix + 'pause : "pauses the music"',	prefix + 'resume : "resumes the music"', prefix + 'skip : "skips the playing song"', prefix + 'time : "Shows the playtime of the song."',	'volume+(+++) : "increases volume by 2%/+"',	'volume-(---) : "decreases volume by 2%/-"', '```', "===============", "=== MODERATION HELP ===", '```', prefix + "%clear (number of messages) : Prunes/purges/clears the chat", '```', "==============="];
+		let tosend = ["=== MUSIC HELP ===", '```', prefix + 'join : "Join Voice channel of msg sender"',	prefix + 'add : "Add a valid youtube link to the queue"', prefix + 'queue : "Shows the current queue, up to 15 songs shown."', prefix + 'play : "Play the music queue if already joined to a voice channel"', '', 'the following commands only function while the play command is running:'.toUpperCase(), prefix + 'pause : "pauses the music"',	prefix + 'resume : "resumes the music"', prefix + 'skip : "skips the playing song"', prefix + 'time : "Shows the playtime of the song."',	'volume+(+++) : "increases volume by 2%/+"',	'volume-(---) : "decreases volume by 2%/-"', '```', "===============", "=== MODERATION HELP ===", '```', prefix + "clear (number of messages) : Prunes/purges/clears the chat", '```', "==============="];
 		msg.channel.sendMessage(msg.author + " check your DM for the help list! :white_check_mark:");
 		msg.author.sendMessage(tosend.join('\n'))
 	},
@@ -95,8 +95,13 @@ const commands = {
 					return;
 				} else {
 					async function clear() {
+						if (limit2 >= 100) {
+							var MessagesToBeCleared = 100;
+						} else {
+							var MessagesToBeCleared = limit2;
+						}
 						msg.delete();
-						const fetched = await msg.channel.fetchMessages({limit: limit2});
+						const fetched = await msg.channel.fetchMessages({limit: MessagesToBeCleared});
 						msg.channel.bulkDelete(fetched);
 					}
 					clear();
