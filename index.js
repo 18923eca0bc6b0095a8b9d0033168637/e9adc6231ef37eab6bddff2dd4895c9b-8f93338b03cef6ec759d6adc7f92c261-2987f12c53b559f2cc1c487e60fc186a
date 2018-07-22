@@ -4,8 +4,8 @@ const client = new Client();
 
 let queue = {};
 
-var tokens.prefix = "%";
-var tokens.adminID = "301073031801995264";
+let tokens.prefix = "%";
+let tokens.adminID = "301073031801995264";
 
 const commands = {
 	'play': (msg) => {
