@@ -88,35 +88,12 @@ const commands = {
 		if (msg.author.id == adminID) process.exit(); //Requires a node module like Forever to work.
 	},
 	'clear': (msg) => {
-		let deleteStuff = () => {
-			let count = 0;
-			msg.channel.fetchMessages({limit: 100})
-			 .then(messages => {
-			   let messagesArr = messages.array();
-			   let messageCount = messagesArr.length;
-
-			   for(let i = 0; i < messageCount; i++) {
-				 messagesArr[i].delete()
-				  .then(function() {
-					count = count + 1;
-					if(count >= 100) {
-					  deleteStuff();
-					}
-				  })
-				  .catch(function() {
-					count = count + 1;
-					if(count >= 100) {
-					  deleteStuff();
-					}
-				  })
-			   }
-			 })
-			 .catch(function(err) {
-			   console.log('error thrown');
-			   console.log(err);
-			 });
-		  };
-		deleteStuff();
+		async function clear() {
+            msg.delete();
+            const fetched = await msg.channel.fetchMessages({limit: 99});
+            msg.channel.bulkDelete(fetched);
+        }
+        clear();
 	}
 };
 
