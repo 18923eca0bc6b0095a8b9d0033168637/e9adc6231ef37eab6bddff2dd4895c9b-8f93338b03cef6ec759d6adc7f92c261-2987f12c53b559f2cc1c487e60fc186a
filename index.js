@@ -82,19 +82,23 @@ const commands = {
 	},
 	'help': (msg) => {
 		let tosend = ["=== MUSIC HELP ===", '```', prefix + 'join : "Join Voice channel of msg sender"',	prefix + 'add : "Add a valid youtube link to the queue"', prefix + 'queue : "Shows the current queue, up to 15 songs shown."', prefix + 'play : "Play the music queue if already joined to a voice channel"', '', 'the following commands only function while the play command is running:'.toUpperCase(), prefix + 'pause : "pauses the music"',	prefix + 'resume : "resumes the music"', prefix + 'skip : "skips the playing song"', prefix + 'time : "Shows the playtime of the song."',	'volume+(+++) : "increases volume by 2%/+"',	'volume-(---) : "decreases volume by 2%/-"', '```', "==============="];
-		msg.channel.sendMessage(msg.author + " check your PM for the help list! :white_c");
+		msg.channel.sendMessage(msg.author + " check your PM for the help list! :white_check_mark:");
 		msg.author.sendMessage(tosend.join('\n'))
 	},
 	'reboot': (msg) => {
 		if (msg.author.id == adminID) process.exit(); //Requires a node module like Forever to work.
 	},
 	'clear': (msg) => {
-		async function clear() {
-            msg.delete();
-            const fetched = await msg.channel.fetchMessages({limit: 99});
-            msg.channel.bulkDelete(fetched);
-        }
-        clear();
+		if(msg.channel.permissionsFor(msg.member).hasPermission("MANAGE_MESSAGES")) {
+			async function clear() {
+				msg.delete();
+				const fetched = await msg.channel.fetchMessages({limit: 99});
+				msg.channel.bulkDelete(fetched);
+			}
+			clear();
+		} else {
+			msg.channel.sendMessage(msg.author + " no permissions! :x:");
+		}
 	}
 };
 
