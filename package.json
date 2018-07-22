@@ -27,7 +27,9 @@
   "homepage": "https://github.com/synicalsyntax/discord.js-heroku#readme",
   "dependencies": {
     "discord.js" : "11.0.0",
-    "ytdl-core" :  "github:fent/node-ytdl-core#master",
-    "node-opus" : "^0.2.1"
+    "youtube-search": "^1.0.6",
+    "mathjs": "^3.5.3",
+    "ytdl-core": "^0.7.17",
+    "express":"^4"
   }
 }
