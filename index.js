@@ -17,7 +17,6 @@ client.on('message', msg => {
 	if (msg.content.indexOf("السلام عليكم") === 0) {
 		msg.channel.send(msg.author + " و عليكم السلام ورحمة الله و بركاته ");
 	}
-    else if (command === 'invite') return msg.channel.send(process.env.INVITE);
 });
 
 client.login(process.env.TOKEN);
