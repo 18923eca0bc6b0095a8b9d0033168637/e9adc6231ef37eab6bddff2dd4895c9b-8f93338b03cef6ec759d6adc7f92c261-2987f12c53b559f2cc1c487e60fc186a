@@ -117,7 +117,7 @@ const commands = {
 client.on('ready', () => {
 	client.user.setPresence({
         game: {
-            name: 'on ' + client.guilds.size + 'servers',
+            name: 'on ' + client.guilds.size + ' servers',
             type: "PLAYING",
             url: "https://botato.xyz"
         }
