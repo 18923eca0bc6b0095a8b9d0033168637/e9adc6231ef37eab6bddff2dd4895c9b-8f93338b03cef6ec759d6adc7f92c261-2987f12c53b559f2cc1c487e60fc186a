@@ -115,26 +115,16 @@ const commands = {
 	'serverbroadcast': (msg) => {
 		let message2broadcast = msg.content.split(' ')[1];
 		if (!msg.member.hasPermission("ADMINISTRATOR"))  return msg.channel.sendMessage(msg.author + " | No permissions! :x:");
-		if (!message2broadcast[1]) {
+		if (message2broadcast == "") {
 
-			let embed3 = new Discord.RichEmbed()
-				.setDescription(":white_check_mark: | Sent an empty message.")
-				.setColor("#FF00FF")
-			msg.channel.sendEmbed(embed3);
+			msg.channel.sendMessage(msg.author + " | No message entered. :x:");
 
 		} else {
-
-
-			let embed4 = new Discord.RichEmbed()
-				.setDescription(':white_check_mark: | The message has been sent to all the servers.')
-				.setColor("#99999")
-
-			msg.channel.sendEmbed(embed4);
-			msg.delete();
 			
 			var guildList = client.guilds.array();
 			try {
 				guildList.forEach(guild => guild.defaultChannel.send(message2broadcast));
+				msg.channel.sendMessage(msg.author + " | The message was successfully sent to all the servers. :white_check_mark:");
 			} catch (err) {
 				console.log("Could not send message to " + guild.name);
 			}
