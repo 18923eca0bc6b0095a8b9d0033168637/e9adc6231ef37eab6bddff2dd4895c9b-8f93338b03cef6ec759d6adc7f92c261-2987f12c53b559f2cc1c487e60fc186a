@@ -130,6 +130,23 @@ const commands = {
 				msg.channel.sendMessage(msg.author + " | Successfully broadcasted. :white_check_mark:");
 			}
 		}
+	},
+	'kick': (msg) => {
+		let message2broadcast = msg.content.split(' ')[1];
+		if (!msg.channel.permissionsFor(msg.member).hasPermission("KICK_MEMBERS")) {
+			msg.channel.sendMessage(msg.author + " | No permissions! :x:");
+			return;
+		} else {
+			var member = msg.mentions.members.first();
+			// Kick
+			member.kick().then((member) => {
+				// Successmessage
+				msg.channel.send(member + " was kicked by " + msg.author + " :white_check_mark:");
+			}).catch(() => {
+				 // Failmessage
+				msg.channel.send("Access Denied");
+			});
+		}
 	}
 };
 
