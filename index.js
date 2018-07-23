@@ -123,7 +123,7 @@ const commands = {
 				msg.channel.sendMessage(msg.author + " | No message entered. :x:");
 
 			} else {
-				let tosend2 = ['```', "Sender: " + msg.author.toString(), "Server: " + msg.guild.name, "Message:", '```', message2broadcast];
+				let tosend2 = ['```', "Sender: ", '```', msg.author, '```', "Server: ", '```', msg.guild.name, "Message:", message2broadcast];
 				msg.channel.guild.members.forEach(user => {
 					user.send(tosend2.join('\n'));
 				});
