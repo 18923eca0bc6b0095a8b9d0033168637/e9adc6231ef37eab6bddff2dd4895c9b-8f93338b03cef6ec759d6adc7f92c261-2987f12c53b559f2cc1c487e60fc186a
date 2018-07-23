@@ -132,7 +132,6 @@ const commands = {
 		}
 	},
 	'kick': (msg) => {
-		let message2broadcast = msg.content.split(' ')[1];
 		if (!msg.channel.permissionsFor(msg.member).hasPermission("KICK_MEMBERS")) {
 			msg.channel.sendMessage(msg.author + " | No permissions! :x:");
 			return;
