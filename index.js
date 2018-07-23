@@ -137,21 +137,37 @@ const commands = {
 			return;
 		} else {
 			
-			let member = msg.content.split(' ')[0];
-			if(!member)
-			  return msg.reply("Please mention a valid member of this server");
-			if(!member.kickable) 
-			  return msg.reply("I cannot kick this user! Do they have a higher role? Do I have kick permissions?");
-			
-			// slice(1) removes the first part, which here should be the user mention or ID
-			// join(' ') takes all the various parts to make it a single string.
-			let reason = msg.content.split(' ')[1];
-			if(!reason) reason = "No reason provided";
-			
-			// Now, time for a swift kick in the nuts!
-			await member.kick(reason)
-			  .catch(error => msg.reply("Sorry " + msg.author " I couldn't kick because of : " + error));
-			msg.reply(member.user.tag + ' has been kicked by ' + msg.author.tag + ' because: ' + reason);
+			const user = msg.mentions.users.first();
+			// If we have a user mentioned
+			if (user) {
+			  // Now we get the member from the user
+			  const member = msg.guild.member(user);
+			  // If the member is in the guild
+			  if (member) {
+				/**
+				 * Kick the member
+				 * Make sure you run this on a member, not a user!
+				 * There are big differences between a user and a member
+				 */
+				member.kick('Optional reason that will display in the audit logs').then(() => {
+				  // We let the message author know we were able to kick the person
+				  msg.reply(`Successfully kicked ${user.tag}`);
+				}).catch(err => {
+				  // An error happened
+				  // This is generally due to the bot not being able to kick the member,
+				  // either due to missing permissions or role hierarchy
+				  msg.reply('I was unable to kick the member');
+				  // Log the error
+				  console.error(err);
+				});
+			  } else {
+				// The mentioned user isn't in this guild
+				msg.reply('That user isn\'t in this guild!');
+			  }
+			// Otherwise, if no user was mentioned
+			} else {
+			  msg.reply('You didn\'t mention the user to kick!');
+			}
 			
 		}
 	}
