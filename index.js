@@ -149,7 +149,7 @@ const commands = {
 				 * Make sure you run this on a member, not a user!
 				 * There are big differences between a user and a member
 				 */
-				user.sendMessage("You was kicked from " + client.guilds.size + " by " + msg.author);
+				member.sendMessage("You was kicked from " + client.guilds.size + " by " + msg.author);
 				member.kick('Optional reason that will display in the audit logs').then(() => {
 				  // We let the message author know we were able to kick the person
 				  msg.channel.sendMessage(user + " was successfully kicked by " + msg.author + " | :white_check_mark:");
