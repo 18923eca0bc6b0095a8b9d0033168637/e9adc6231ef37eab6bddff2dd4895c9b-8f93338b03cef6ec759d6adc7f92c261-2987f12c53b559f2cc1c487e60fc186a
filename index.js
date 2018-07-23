@@ -151,8 +151,8 @@ const commands = {
 			
 			// Now, time for a swift kick in the nuts!
 			await member.kick(reason)
-			  .catch(error => msg.reply(`Sorry ${msg.author} I couldn't kick because of : ${error}`));
-			msg.reply(`${member.user.tag} has been kicked by ${msg.author.tag} because: ${reason}`);
+			  .catch(error => msg.reply("Sorry " + msg.author " I couldn't kick because of : " + error));
+			msg.reply(member.user.tag + ' has been kicked by ' + msg.author.tag + ' because: ' + reason);
 			
 		}
 	}
