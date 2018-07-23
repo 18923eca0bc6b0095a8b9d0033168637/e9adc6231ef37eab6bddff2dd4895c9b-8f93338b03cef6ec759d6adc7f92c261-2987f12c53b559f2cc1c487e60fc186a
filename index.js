@@ -137,15 +137,23 @@ const commands = {
 			msg.channel.sendMessage(msg.author + " | No permissions! :x:");
 			return;
 		} else {
-			var member = msg.mentions.members.first();
-			// Kick
-			member.kick().then((member) => {
-				// Successmessage
-				msg.channel.send(member + " was kicked by " + msg.author + " :white_check_mark:");
-			}).catch(() => {
-				 // Failmessage
-				msg.channel.send("Access Denied");
-			});
+			
+			let member = msg.mentions.members.first() || msg.guild.members.get(args[0]);
+			if(!member)
+			  return msg.reply("Please mention a valid member of this server");
+			if(!member.kickable) 
+			  return msg.reply("I cannot kick this user! Do they have a higher role? Do I have kick permissions?");
+			
+			// slice(1) removes the first part, which here should be the user mention or ID
+			// join(' ') takes all the various parts to make it a single string.
+			let reason = args.slice(1).join(' ');
+			if(!reason) reason = "No reason provided";
+			
+			// Now, time for a swift kick in the nuts!
+			await member.kick(reason)
+			  .catch(error => msg.reply(`Sorry ${msg.author} I couldn't kick because of : ${error}`));
+			msg.reply(`${member.user.tag} has been kicked by ${msg.author.tag} because: ${reason}`);
+			
 		}
 	}
 };
