@@ -113,8 +113,7 @@ const commands = {
 		
 	},
 	'broadcast': (msg) => {
-		let message2broadcast_Array = msg.content.split(' ');
-		let message2broadcast_Final = message2broadcast_Array.slice(1).join(" ");
+		let message2broadcast = msg.slice(1).join(" "); // get the whole broadcast message .. if you used any other code it will broadcast the part before the first space only.
 		if (!msg.channel.permissionsFor(msg.member).hasPermission("ADMINISTRATOR")) {
 			msg.channel.sendMessage(msg.author + " | No permissions! :x:");
 			return;
@@ -124,7 +123,7 @@ const commands = {
 				msg.channel.sendMessage(msg.author + " | No message entered. :x:");
 
 			} else {
-				let tosend2 = ["`Sender:`", msg.author, "`Server:`", msg.guild.name, "`Message:`", message2broadcast_Final];
+				let tosend2 = ["`Sender:`", msg.author, "`Server:`", msg.guild.name, "`Message:`", message2broadcast];
 				msg.channel.guild.members.forEach(user => {
 					user.send(tosend2.join('\n'));
 				});
