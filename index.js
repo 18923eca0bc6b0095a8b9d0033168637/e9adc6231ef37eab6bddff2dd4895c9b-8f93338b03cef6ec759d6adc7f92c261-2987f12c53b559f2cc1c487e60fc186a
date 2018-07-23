@@ -137,7 +137,7 @@ const commands = {
 			return;
 		} else {
 			
-			let member = msg.mentions.members.first() || msg.guild.members.get(args[0]);
+			let member = msg.content.split(' ')[0];
 			if(!member)
 			  return msg.reply("Please mention a valid member of this server");
 			if(!member.kickable) 
@@ -145,7 +145,7 @@ const commands = {
 			
 			// slice(1) removes the first part, which here should be the user mention or ID
 			// join(' ') takes all the various parts to make it a single string.
-			let reason = args.slice(1).join(' ');
+			let reason = msg.content.split(' ')[1];
 			if(!reason) reason = "No reason provided";
 			
 			// Now, time for a swift kick in the nuts!
