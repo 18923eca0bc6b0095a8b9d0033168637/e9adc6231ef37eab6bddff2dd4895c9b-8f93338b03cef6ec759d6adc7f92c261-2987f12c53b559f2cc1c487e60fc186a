@@ -117,8 +117,8 @@ const commands = {
 client.on('ready', () => {
 	client.user.setPresence({
         game: {
-            name: 'X servers',
-            type: "STREAMING",
+            name: 'on ' + client.guilds.size + servers',
+            type: "PLAYING",
             url: "https://botato.xyz"
         }
     });
