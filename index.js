@@ -122,13 +122,9 @@ const commands = {
 
 			msg.channel.sendMessage(msg.author + " | No message entered. :x:");
 
-		} else {
-			
-			var guildList = client.guilds.array();
-			guildList.forEach(guild => guild.defaultChannel.send(message2broadcast));
-			msg.channel.sendMessage(msg.author + " | The message was successfully sent to all the servers. :white_check_mark:");
-			
 		}
+		
+		//nothing
 	}
 };
 
