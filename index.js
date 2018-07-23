@@ -151,7 +151,7 @@ const commands = {
 				 */
 				member.kick('Optional reason that will display in the audit logs').then(() => {
 				  // We let the message author know we were able to kick the person
-				  msg.member.sendMessage("You was kicked from " + client.guilds.size + " by " + msg.author);
+				  member.sendMessage("You was kicked from " + client.guilds.size + " by " + msg.author);
 				  msg.channel.sendMessage(user + " was successfully kicked by " + msg.author + " | :white_check_mark:");
 				}).catch(err => {
 				  // An error happened
