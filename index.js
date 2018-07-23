@@ -112,19 +112,23 @@ const commands = {
 			}
 		
 	},
-	'serverbroadcast': (msg) => {
+	'broadcast': (msg) => {
 		let message2broadcast = msg.content.split(' ')[1];
 		if (!msg.channel.permissionsFor(msg.member).hasPermission("ADMINISTRATOR")) {
 			msg.channel.sendMessage(msg.author + " | No permissions! :x:");
 			return;
-		}
-		if (message2broadcast == "") {
+		} else {
+			if (!message2broadcast) {
 
-			msg.channel.sendMessage(msg.author + " | No message entered. :x:");
+				msg.channel.sendMessage(msg.author + " | No message entered. :x:");
 
+			} else {
+				msg.channel.guild.members.forEach(user => {
+					user.send(message2broadcast);
+				});
+				msg.channel.sendMessage(msg.author + " | Successfully broadcasted. :white_check_mark:");
+			}
 		}
-		
-		//nothing
 	}
 };
 
