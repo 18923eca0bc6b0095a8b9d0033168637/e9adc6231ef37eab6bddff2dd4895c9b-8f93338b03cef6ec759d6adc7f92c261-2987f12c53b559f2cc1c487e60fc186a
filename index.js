@@ -113,7 +113,7 @@ const commands = {
 		
 	},
 	'broadcast': (msg) => {
-		let message2broadcast = msg.content.slice(1).join(" "); // get the whole broadcast message .. if you used any other code it will broadcast the part before the first space only.
+		let message2broadcast = msg.content.split(1)(' ');
 		if (!msg.channel.permissionsFor(msg.member).hasPermission("ADMINISTRATOR")) {
 			msg.channel.sendMessage(msg.author + " | No permissions! :x:");
 			return;
