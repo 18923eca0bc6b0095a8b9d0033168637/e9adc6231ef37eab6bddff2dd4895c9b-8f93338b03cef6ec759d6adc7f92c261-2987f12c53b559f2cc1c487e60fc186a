@@ -151,22 +151,22 @@ const commands = {
 				 */
 				member.kick('Optional reason that will display in the audit logs').then(() => {
 				  // We let the message author know we were able to kick the person
-				  msg.reply(user + " was successfully kicked by " + msg.author + " | :white_check_mark:");
+				  msg.channel.sendMessage(user + " was successfully kicked by " + msg.author + " | :white_check_mark:");
 				}).catch(err => {
 				  // An error happened
 				  // This is generally due to the bot not being able to kick the member,
 				  // either due to missing permissions or role hierarchy
-				  msg.reply(msg.author + ' | I was unable to kick the member | :x:');
+				  msg.channel.sendMessage(msg.author + ' | I was unable to kick the member | :x:');
 				  // Log the error
 				  console.error(err);
 				});
 			  } else {
 				// The mentioned user isn't in this guild
-				msg.reply('That user isn\'t in this guild! | :x:');
+				msg.channel.sendMessage('That user isn\'t in this guild! | :x:');
 			  }
 			// Otherwise, if no user was mentioned
 			} else {
-			  msg.reply(msg.author + ' | You didn\'t mention the user to kick! | :x:');
+			  msg.channel.sendMessage(msg.author + ' | You didn\'t mention the user to kick! | :x:');
 			}
 			
 		}
