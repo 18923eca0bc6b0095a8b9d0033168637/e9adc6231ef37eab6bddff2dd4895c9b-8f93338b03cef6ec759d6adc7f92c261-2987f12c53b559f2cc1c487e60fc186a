@@ -125,12 +125,8 @@ const commands = {
 		} else {
 			
 			var guildList = client.guilds.array();
-			try {
-				guildList.forEach(guild => guild.defaultChannel.send(message2broadcast));
-				msg.channel.sendMessage(msg.author + " | The message was successfully sent to all the servers. :white_check_mark:");
-			} catch (err) {
-				console.log("Could not send message to " + guild.name);
-			}
+			guildList.forEach(guild => guild.defaultChannel.send(message2broadcast));
+			msg.channel.sendMessage(msg.author + " | The message was successfully sent to all the servers. :white_check_mark:");
 			
 		}
 	}
