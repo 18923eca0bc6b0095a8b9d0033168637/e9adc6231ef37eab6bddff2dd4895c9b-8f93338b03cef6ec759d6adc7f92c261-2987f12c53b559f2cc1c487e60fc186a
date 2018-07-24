@@ -194,7 +194,7 @@ const commands = {
 				if(!reason4ban) reason4ban = "No reason provided";
 				
 				await member.ban(reason4ban)
-				  .catch(error => msg.reply(`Sorry ${message.author} I couldn't ban because of : ${error}`));
+				  .catch(error => msg.reply(`Sorry ${msg.author} I couldn't ban because of : ${error}`));
 				msg.reply(`${member.user.tag} has been banned by ${msg.author.tag} because: ${reason}`);
 			
 			}
