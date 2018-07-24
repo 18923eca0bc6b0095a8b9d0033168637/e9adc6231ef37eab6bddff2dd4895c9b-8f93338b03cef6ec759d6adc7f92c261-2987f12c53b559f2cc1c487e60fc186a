@@ -178,38 +178,49 @@ const commands = {
 			return;
 		} else {
 			
-			const user = msg.mentions.users.first();
-			// If we have a user mentioned
-			if (user) {
-			  // Now we get the member from the user
-			  const member = msg.guild.member(user);
-			  // If the member is in the guild
-			  if (member) {
-				/**
-				 * Kick the member
-				 * Make sure you run this on a member, not a user!
-				 * There are big differences between a user and a member
-				 */
-				member.sendMessage("You was banned from " + client.guilds.size + " by " + msg.author);
-				member.ban('Optional reason that will display in the audit logs').then(() => {
-				  // We let the message author know we were able to kick the person
-				  msg.channel.sendMessage(user + " was successfully banned by " + msg.author + " | :white_check_mark:");
-				}).catch(err => {
-				  // An error happened
-				  // This is generally due to the bot not being able to kick the member,
-				  // either due to missing permissions or role hierarchy
-				  msg.channel.sendMessage(msg.author + ' | I was unable to ban the member | :x:');
-				  // Log the error
-				  console.error(err);
-				});
-			  } else {
-				// The mentioned user isn't in this guild
-				msg.channel.sendMessage('That user isn\'t in this guild! | :x:');
-			  }
-			// Otherwise, if no user was mentioned
+			let reason4ban = msg.content.split(' ').splice(1).join(' ');
+			
+			if (!reason4ban) {
+				msg.channel.sendMessage(msg.author + ' | You did not add a reason for the ban. | :x:');
+				return;
 			} else {
-			  msg.channel.sendMessage(msg.author + ' | You didn\'t mention the user to ban! | :x:');
-			}
+			
+				const user = msg.mentions.users.first();
+				// If we have a user mentioned
+				if (user) {
+				  // Now we get the member from the user
+				  const member = msg.guild.member(user);
+				  // If the member is in the guild
+				  if (member) {
+					/**
+					 * Kick the member
+					 * Make sure you run this on a member, not a user!
+					 * There are big differences between a user and a member
+					 */
+					member.sendMessage("You was banned from " + client.guilds.size + " by " + msg.author);
+					member.ban({
+					  reason: reason4ban,
+					}).then(() => {
+					  // We let the message author know we were able to kick the person
+					  msg.channel.sendMessage(user + " was successfully banned by " + msg.author + " | :white_check_mark:");
+					}).catch(err => {
+					  // An error happened
+					  // This is generally due to the bot not being able to kick the member,
+					  // either due to missing permissions or role hierarchy
+					  msg.channel.sendMessage(msg.author + ' | I was unable to ban the member | :x:');
+					  // Log the error
+					  console.error(err);
+					});
+				  } else {
+					// The mentioned user isn't in this guild
+					msg.channel.sendMessage('That user isn\'t in this guild! | :x:');
+				  }
+				// Otherwise, if no user was mentioned
+				} else {
+				  msg.channel.sendMessage(msg.author + ' | You didn\'t mention the user to ban! | :x:');
+				}
+			
+		}
 			
 		}
 	}
