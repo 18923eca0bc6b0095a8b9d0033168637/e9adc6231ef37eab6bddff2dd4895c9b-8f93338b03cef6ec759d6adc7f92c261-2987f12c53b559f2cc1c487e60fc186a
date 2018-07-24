@@ -174,7 +174,7 @@ const commands = {
 	}
 };
 
-var activities_list = [
+let activities_list = [
     "Use %help", 
     "on " + client.guilds.size + " servers",
     "Bot by MarioLatifFathy"
