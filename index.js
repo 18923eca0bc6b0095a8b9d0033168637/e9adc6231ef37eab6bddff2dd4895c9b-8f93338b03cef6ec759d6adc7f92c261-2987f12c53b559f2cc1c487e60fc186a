@@ -174,11 +174,11 @@ const commands = {
 	}
 };
 
-const activities_list = [
+var activities_list = [
     "Use %help", 
     "on " + client.guilds.size + " servers",
     "Bot by MarioLatifFathy"
-]; // creates an arraylist containing phrases you want your bot to switch through.
+	]; // creates an arraylist containing phrases you want your bot to switch through.
 
 client.on('ready', () => {
 	setInterval(() => {
