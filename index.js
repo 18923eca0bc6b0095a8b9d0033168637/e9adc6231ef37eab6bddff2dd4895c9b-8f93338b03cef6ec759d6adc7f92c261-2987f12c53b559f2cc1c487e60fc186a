@@ -113,7 +113,9 @@ const commands = {
 		
 	},
 	'broadcast': (msg) => {
-		let message2broadcast = msg.content.split(' ').shift();
+		var array = msg.content.split(' ');
+		array.shift();
+		let message2broadcast = array;
 		if (!msg.channel.permissionsFor(msg.member).hasPermission("ADMINISTRATOR")) {
 			msg.channel.sendMessage(msg.author + " | No permissions! :x:");
 			return;
