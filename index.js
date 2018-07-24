@@ -185,17 +185,17 @@ const commands = {
 				return;
 			} else {
 			
-				let member = message.mentions.members.first();
+				let member = msg.mentions.members.first();
 				if(!member)
-				  return message.reply("Please mention a valid member of this server");
+				  return msg.reply("Please mention a valid member of this server");
 				if(!member.bannable) 
-				  return message.reply("I cannot ban this user! Do they have a higher role? Do I have ban permissions?");
+				  return msg.reply("I cannot ban this user! Do they have a higher role? Do I have ban permissions?");
 
 				if(!reason4ban) reason4ban = "No reason provided";
 				
 				await member.ban(reason4ban)
-				  .catch(error => message.reply(`Sorry ${message.author} I couldn't ban because of : ${error}`));
-				message.reply(`${member.user.tag} has been banned by ${message.author.tag} because: ${reason}`);
+				  .catch(error => msg.reply(`Sorry ${message.author} I couldn't ban because of : ${error}`));
+				msg.reply(`${member.user.tag} has been banned by ${msg.author.tag} because: ${reason}`);
 			
 			}
 			
