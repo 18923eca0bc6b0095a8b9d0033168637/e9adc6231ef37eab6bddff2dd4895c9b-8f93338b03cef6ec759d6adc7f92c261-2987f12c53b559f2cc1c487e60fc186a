@@ -80,7 +80,7 @@ const commands = {
 		msg.channel.sendMessage(`__**${msg.guild.name}'s Music Queue:**__ Currently **${tosend.length}** songs queued ${(tosend.length > 15 ? '*[Only next 15 shown]*' : '')}\n\`\`\`${tosend.slice(0,15).join('\n')}\`\`\``);
 	},
 	'help': (msg) => {
-		let tosend = ["=== MUSIC HELP ===", '```', prefix + 'join : "Join Voice channel of msg sender"',	prefix + 'add : "Add a valid youtube link to the queue"', prefix + 'queue : "Shows the current queue, up to 15 songs shown."', prefix + 'play : "Play the music queue if already joined to a voice channel"', '', 'the following commands only function while the play command is running:'.toUpperCase(), prefix + 'pause : "pauses the music"',	prefix + 'resume : "resumes the music"', prefix + 'skip : "skips the playing song"', prefix + 'time : "Shows the playtime of the song."',	'volume+(+++) : "increases volume by 2%/+"',	'volume-(---) : "decreases volume by 2%/-"', '```', "=== MODERATION HELP ===", '```', prefix + "clear (number of messages) : Prunes/purges/clears the chat", prefix + "broadcast (message) : Broadcasts a message to all the server members.", '```'];
+		let tosend = ["=== MUSIC HELP ===", '```', prefix + 'join : "Join Voice channel of msg sender"',	prefix + 'add : "Add a valid youtube link to the queue"', prefix + 'queue : "Shows the current queue, up to 15 songs shown."', prefix + 'play : "Play the music queue if already joined to a voice channel"', '', 'the following commands only function while the play command is running:'.toUpperCase(), prefix + 'pause : "pauses the music"',	prefix + 'resume : "resumes the music"', prefix + 'skip : "skips the playing song"', prefix + 'time : "Shows the playtime of the song."',	'volume+(+++) : "increases volume by 2%/+"',	'volume-(---) : "decreases volume by 2%/-"', '```', "=== MODERATION HELP ===", '```', prefix + "clear (number of messages) : Prunes/purges/clears the chat", prefix + "broadcast (message) : Broadcasts a message to all the server members.", prefix + "kick (member) : Kicks a member from the server.", '```'];
 		msg.channel.sendMessage(msg.author + " check your DM for the help list! :white_check_mark:");
 		msg.author.sendMessage(tosend.join('\n'));
 	},
@@ -168,35 +168,6 @@ const commands = {
 			// Otherwise, if no user was mentioned
 			} else {
 			  msg.channel.sendMessage(msg.author + ' | You didn\'t mention the user to kick! | :x:');
-			}
-			
-		}
-	},
-	'ban': (msg) => {
-		if (!msg.channel.permissionsFor(msg.member).hasPermission("BAN_MEMBERS")) {
-			msg.channel.sendMessage(msg.author + " | No permissions! :x:");
-			return;
-		} else {
-			
-			let reason4ban = msg.content.split(' ').splice(1).join(' ');
-			
-			if (!reason4ban) {
-				msg.channel.sendMessage(msg.author + ' | You did not add a reason for the ban. | :x:');
-				return;
-			} else {
-			
-				let member = msg.mentions.members.first();
-				if(!member)
-				  return msg.reply("Please mention a valid member of this server");
-				if(!member.bannable) 
-				  return msg.reply("I cannot ban this user! Do they have a higher role? Do I have ban permissions?");
-
-				if(!reason4ban) reason4ban = "No reason provided";
-				
-				await member.ban(reason4ban)
-				  .catch(error => msg.reply('Sorry ' + msg.author + ' + I could not ban because of : ' + error));
-				msg.reply(member.user.tag + ' has been banned by ' + msg.author.tag + ' because: ' + reason);
-			
 			}
 			
 		}
