@@ -6,6 +6,7 @@ let queue = {};
 
 var prefix = "%";
 var adminID = "301073031801995264";
+var AndrewsPlaceServerID = "471076071601864706";
 
 const commands = {
 	'play': (msg) => {
@@ -181,6 +182,10 @@ client.on('ready', () => {
 client.on('message', msg => {
 	if (!msg.content.startsWith(prefix)) return;
 	if (commands.hasOwnProperty(msg.content.toLowerCase().slice(prefix.length).split(' ')[0])) commands[msg.content.toLowerCase().slice(prefix.length).split(' ')[0]](msg);
+	if (msg.guild.id == AndrewsPlaceServerID && msg.channel.id !== "471082861328334859" && msg.content.startsWith("!" || "?" || "%")) {
+		msg.delete(0);:
+		msg.channel.sendMessage(msg.author + " | Please write the commands in #commands only. | :x:");
+	}
 });
 
 client.login(process.env.TOKEN);
