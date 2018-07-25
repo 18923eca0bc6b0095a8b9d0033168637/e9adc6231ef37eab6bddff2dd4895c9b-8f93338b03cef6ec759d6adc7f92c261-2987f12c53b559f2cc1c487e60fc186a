@@ -183,7 +183,12 @@ client.on('message', msg => {
 	if (!msg.content.startsWith(prefix)) return;
 	if (commands.hasOwnProperty(msg.content.toLowerCase().slice(prefix.length).split(' ')[0])) commands[msg.content.toLowerCase().slice(prefix.length).split(' ')[0]](msg);
 	if (msg.guild.id == AndrewsPlaceServerID && msg.channel.id !== "471082861328334859" && msg.content.startsWith("!" || "?" || "%")) {
-		msg.delete(0);:
+		async function clearBadCmds() {
+						msg.delete();
+						const fetched = await msg.channel.fetchMessages({limit: 2});
+						msg.channel.bulkDelete(fetched);
+		}
+		clearBadCmds();
 		msg.channel.sendMessage(msg.author + " | Please write the commands in #commands only. | :x:");
 	}
 });
