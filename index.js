@@ -12,7 +12,7 @@ var adminID = "301073031801995264";
 
 const commands = {
 	'help': (msg) => {
-		let tosend = ["=== MUSIC HELP ===", '```', prefix + 'join : "Join Voice channel of msg sender"',	prefix + 'add : "Add a valid youtube link to the queue"', prefix + 'queue : "Shows the current queue, up to 15 songs shown."', prefix + 'play : "Play the music queue if already joined to a voice channel"', '', 'the following commands only function while the play command is running:'.toUpperCase(), prefix + 'pause : "pauses the music"',	prefix + 'resume : "resumes the music"', prefix + 'skip : "skips the playing song"', prefix + 'time : "Shows the playtime of the song."',	'volume+(+++) : "increases volume by 2%/+"',	'volume-(---) : "decreases volume by 2%/-"', '```', "=== MODERATION HELP ===", '```', prefix + "clear (number of messages) : Prunes/purges/clears the chat", prefix + "broadcast (message) : Broadcasts a message to all the server members.", prefix + "kick (member) : Kicks a member from the server.", '```'];
+		let tosend = ["=== MUSIC HELP ===", '```', prefix + 'play (song name) : "Plays a song."',	prefix + 'np : "Shows the song which is currently playing."', prefix + 'queue : "Shows the current queue, up to 15 songs shown."', prefix + 'pause : "Pauses the current song."', prefix + 'resume : "resumes the music"', prefix + 'skip : "skips the playing song"', prefix + 'stop : "Stops the current song."',	prefix + 'volume (50) : "Sets the volume to 50%"', '```', "=== MODERATION HELP ===", '```', prefix + "clear (number of messages) : Prunes/purges/clears the chat", prefix + "broadcast (message) : Broadcasts a message to all the server members.", prefix + "kick (member) : Kicks a member from the server.", '```'];
 		msg.channel.sendMessage(msg.author + " check your DM for the help list! :white_check_mark:");
 		msg.author.sendMessage(tosend.join('\n'));
 	},
@@ -123,6 +123,18 @@ client.on('reconnecting', () => console.log('I am reconnecting now!'));
 client.on('message', msg => {
 	if (!msg.content.startsWith(prefix)) return;
 	if (commands.hasOwnProperty(msg.content.toLowerCase().slice(prefix.length).split(' ')[0])) commands[msg.content.toLowerCase().slice(prefix.length).split(' ')[0]](msg);
+	if (msg.guild.id == "471076071601864706" && msg.channel.id !== "471082861328334859" && msg.content.startsWith("!")) {
+		async function clearBadCmds() {
+						msg.delete();
+						const fetched = await msg.channel.fetchMessages({limit: 2});
+						msg.channel.bulkDelete(fetched);
+		}
+		clearBadCmds();
+		msg.channel.sendMessage(msg.author + " | Please write the commands in #commands only. | :x:");
+	}
+});
+
+client.on('message', msg => {
 	if (msg.guild.id == "471076071601864706" && msg.channel.id !== "471082861328334859" && msg.content.startsWith("!")) {
 		async function clearBadCmds() {
 						msg.delete();
