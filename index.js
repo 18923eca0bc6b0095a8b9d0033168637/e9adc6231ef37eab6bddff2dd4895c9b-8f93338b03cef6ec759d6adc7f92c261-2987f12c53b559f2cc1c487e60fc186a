@@ -306,4 +306,25 @@ function play(guild, song) {
 	serverQueue.textChannel.send(`ًںژ¶ Start playing: **${song.title}**`);
 }
 
+
+
+
+client.on('message', message => {
+    switch(message.content.toUpperCase()) {
+        case prefix+'restart':
+            resetBot(message.channel);
+            break;
+
+        // ... other commands
+    }
+});
+
+// Turn bot off (destroy), then turn it back on
+function resetBot(channel) {
+    // send channel a message that you're resetting bot [optional]
+    channel.send('Resetting...')
+    .then(msg => client.destroy())
+    .then(() => client.login(process.env.TOKEN));
+}
+
 client.login(process.env.TOKEN);
