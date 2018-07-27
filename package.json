@@ -17,7 +17,7 @@
     "discord.js" : "11.0.0",
     "ytdl-core" :  "github:fent/node-ytdl-core#master",
     "opusscript": "0.0.3",
-	"simple-youtube-api": "^3.0.0",
+	"simple-youtube-api": "^3.0.0"
   },
   "devDependencies": {
     "eslint": "^4.0.0",
