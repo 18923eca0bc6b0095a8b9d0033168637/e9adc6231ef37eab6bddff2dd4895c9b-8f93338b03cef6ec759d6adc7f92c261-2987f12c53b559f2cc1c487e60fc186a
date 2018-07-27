@@ -134,18 +134,6 @@ client.on('message', msg => {
 	}
 });
 
-client.on('message', msg => {
-	if (msg.guild.id == "471076071601864706" && msg.channel.id !== "471082861328334859" && msg.content.startsWith("!")) {
-		async function clearBadCmds() {
-						msg.delete();
-						const fetched = await msg.channel.fetchMessages({limit: 2});
-						msg.channel.bulkDelete(fetched);
-		}
-		clearBadCmds();
-		msg.channel.sendMessage(msg.author + " | Please write the commands in #commands only. | :x:");
-	}
-});
-
 client.on('message', async msg => { // eslint-disable-line
 	if (msg.author.bot) return undefined;
 	if (!msg.content.startsWith(prefix)) return undefined;
