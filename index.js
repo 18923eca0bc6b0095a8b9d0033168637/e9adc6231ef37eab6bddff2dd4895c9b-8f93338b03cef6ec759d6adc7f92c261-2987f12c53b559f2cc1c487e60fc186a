@@ -311,7 +311,7 @@ function play(guild, song) {
 
 client.on('message', message => {
     switch(message.content.toUpperCase()) {
-        case prefix+'restart':
+        case '%restart':
             resetBot(message.channel);
             break;
 
