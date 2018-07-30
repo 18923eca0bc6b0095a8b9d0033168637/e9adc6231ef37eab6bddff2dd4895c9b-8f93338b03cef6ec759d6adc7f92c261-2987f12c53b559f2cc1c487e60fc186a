@@ -115,6 +115,10 @@ const commands = {
 
 			} else {
 				
+				if (!serverport_fromfield) {
+					serverport_fromfield = "25565";
+				}
+				
 				const embed = new Discord.RichEmbed()
 			  .setTitle("Minecraft Server Status")
 			  /*
