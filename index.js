@@ -1,4 +1,4 @@
-const { Client, Util } = require('discord.js');
+const { Client, Util, Discord } = require('discord.js');
 const client = new Client();
 const YouTube = require('simple-youtube-api');
 const ytdl = require('ytdl-core');
@@ -103,7 +103,38 @@ const commands = {
 			}
 			
 		}
-	}
+	},
+	'mcserver': (msg) => {
+			let serverip = msg.content.split(' ').splice(1).join(' ');
+			let serverip_fromfield = serverip.substring(0,serverip.indexOf(":"));
+			let serverport_fromfield = serverip.split(':')[1];
+			if (!serverip) {
+
+				msg.channel.sendMessage(msg.author + " | No server IP entered. :x:");
+
+			} else {
+				
+				const embed = new Discord.RichEmbed()
+			  .setTitle("Minecraft Server Status")
+			  /*
+			   * Alternatively, use "#00AE86", [0, 174, 134] or an integer number.
+			   */
+			  .setColor(0x00AE86)
+			  .setFooter("Botato Bot by MarioLatifFathy#2793", "http://i.imgur.com/w1vhFSR.png")
+			  .setImage("http://status.mclive.eu/Server/" + serverip_fromfield + "/" + serverport_fromfield + "/banner.png")
+			  /*
+			   * Takes a Date object, defaults to current date.
+			   */
+			  .setTimestamp()
+			  .addField("Server IP:",
+				serverip)
+
+			  msg.channel.send({embed});
+				
+				
+			}
+		
+		}
 };
 
 client.on('ready', () => {
