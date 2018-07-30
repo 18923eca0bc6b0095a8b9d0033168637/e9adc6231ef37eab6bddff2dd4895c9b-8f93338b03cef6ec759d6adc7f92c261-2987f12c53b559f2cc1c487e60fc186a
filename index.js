@@ -115,10 +115,16 @@ const commands = {
 
 			} else {
 				
-				if (!serverport_fromfield) {
-					var serverport = "25565";
+				if (!serverip.includes(":")) {
+					serverip_final = serverip;
 				} else {
-					var serverport = serverport_fromfield;
+					serverip_final = serverip_fromfield;
+				}
+				
+				if (!serverport_fromfield) {
+					var serverport_final = "25565";
+				} else {
+					var serverport_final = serverport_fromfield;
 				}
 				
 				const embed = new Discord.RichEmbed()
@@ -128,7 +134,7 @@ const commands = {
 			   */
 			  .setColor(0x00AE86)
 			  .setFooter("Botato Bot by MarioLatifFathy#2793", "http://i.imgur.com/w1vhFSR.png")
-			  .setImage("http://status.mclive.eu/Server/" + serverip_fromfield + "/" + serverport + "/banner.png")
+			  .setImage("http://status.mclive.eu/Server/" + serverip_final + "/" + serverport_final + "/banner.png")
 			  /*
 			   * Takes a Date object, defaults to current date.
 			   */
