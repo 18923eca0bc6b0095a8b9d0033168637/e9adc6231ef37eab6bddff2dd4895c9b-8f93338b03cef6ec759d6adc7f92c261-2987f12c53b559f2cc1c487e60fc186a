@@ -26,7 +26,7 @@ client.on('reconnecting', () => console.log('I am reconnecting now!'));
 
 client.on('msg', async message => {
     if (message.channel.DMChannel) {
-        message.author.send("I am offline right now, please DM me once I am online. Thank you!");
+        message.reply(" | I am offline right now, please DM me once I am online. Thank you!");
     }
 });
 
