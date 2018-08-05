@@ -77,6 +77,7 @@ const commands = {
 		msg.channel.send('Restarting bot...');
 		client.destroy();
 		client.login(process.env.TOKEN);
+		msg.channel.send("The bot was restarted successfully.");
 	},
 	'kick': (msg) => {
 		if (!msg.channel.permissionsFor(msg.member).hasPermission("KICK_MEMBERS")) {
